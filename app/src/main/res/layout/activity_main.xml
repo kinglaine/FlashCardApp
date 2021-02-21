@@ -9,11 +9,17 @@
 
     <TextView
         android:id="@+id/flashcard_question"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_height="200dp"
         android:text="@string/who_is_the_44th_president_of_the_united_states"
         android:textSize="40sp"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textColor="#856C6C"
+        android:background="@drawable/card_background"
+        android:elevation="20dp"/>
 
     <TextView
         android:id="@+id/flashcard_answer"
@@ -22,5 +28,46 @@
         android:text="Barack Obama"
         android:textSize="40sp"
         android:gravity="center"
-        android:layout_height="200dp" />
+        android:layout_height="200dp"
+        android:background="#DACC55"
+        android:textColor="#2A958B"/>
+
+    <TextView
+        android:id="@+id/answer1"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/flashcard_question"
+        android:layout_marginTop="51dp"
+        android:layout_centerInParent="true"
+        android:background="#FF9800"
+        android:gravity="center"
+        android:text="George H. W.Bush"
+        android:textColor="#242E2D"
+        android:textSize="20sp" />
+    <TextView
+        android:id="@+id/answer2"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/answer1"
+        android:layout_marginTop="51dp"
+        android:layout_centerInParent="true"
+        android:background="#FF9800"
+        android:gravity="center"
+        android:text="Bill Clinton"
+        android:textColor="#121717"
+        android:textSize="20sp" />
+    <TextView
+        android:id="@+id/answer3"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/answer2"
+        android:layout_marginTop="51dp"
+        android:layout_centerInParent="true"
+        android:background="#FF9800"
+        android:gravity="center"
+        android:text="Barack Obama"
+        android:textColor="#101B1A"
+        android:textSize="20sp" />
+
+    />
 </RelativeLayout>
