@@ -69,5 +69,20 @@
         android:textColor="#101B1A"
         android:textSize="20sp" />
 
+    <ImageView
+        android:id="@+id/toggle_choices_visibility"
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/answer3"
+        android:layout_marginTop="114dp"
+        android:src="@drawable/eyeoff" />
+    <ImageView
+        android:id="@+id/toggle_choices_Invisibility"
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/answer3"
+        android:layout_marginTop="114dp"
+        android:src="@drawable/eyeon" />
+
     />
 </RelativeLayout>
