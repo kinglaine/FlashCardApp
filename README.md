@@ -5,7 +5,7 @@
 `TODO://`Flash Card App
 
 ### App Walk-though
-https://imgflip.com/gif/4zo88d
+![4zo88d (1)](https://user-images.githubusercontent.com/72886722/109374552-20ad6380-786b-11eb-9fe8-8307002f656c.gif)
 
 ## Required
 - [x] Create New Project in Android Studio
