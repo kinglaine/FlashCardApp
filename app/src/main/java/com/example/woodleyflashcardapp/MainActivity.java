@@ -1,15 +1,23 @@
 package com.example.woodleyflashcardapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    boolean isShowingAnswers = true;
+    private Object AddCardActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent intent = new Intent(MainActivity.this,AddCardActivity.class);
+        intent.putExtra("key",60);
+        startActivity(intent);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -20,35 +28,31 @@ public class MainActivity extends AppCompatActivity {
         TextView answers2 = findViewById(R.id.answer2);
         TextView answers3 = findViewById(R.id.answer3);
         ImageView eyebutton = findViewById(R.id.toggle_choices_visibility);
+        ImageView add = findViewById(R.id.add);
+
 
 
         eyebutton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                boolean isShowingAnswers = true;
                 eyebutton.setImageResource(R.drawable.eyeoff);
                 if (isShowingAnswers) {
                     answers1.setVisibility(View.VISIBLE);
                     answers2.setVisibility(View.VISIBLE);
                     answers3.setVisibility(View.VISIBLE);
                     eyebutton.setImageResource(R.drawable.eyeoff);
-                    isShowingAnswers = false;
+                    isShowingAnswers= false;
 
-                } if (!isShowingAnswers){
-                    answers1.setVisibility(View.INVISIBLE);
-                    answers2.setVisibility(View.INVISIBLE);
-                    answers3.setVisibility(View.INVISIBLE);
-                    eyebutton.setImageResource(R.drawable.eyeon);
-
-                }
-
+                } if (!isShowingAnswers) {
+                answers1.setVisibility(View.INVISIBLE);
+                answers2.setVisibility(View.INVISIBLE);
+                answers3.setVisibility(View.INVISIBLE);
+                eyebutton.setImageResource(R.drawable.eyeon);
+                isShowingAnswers = true;
 
             }
+            }
         });
-
-
-
 
 
         questionTextView.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +92,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 findViewById(R.id.answer3).setBackgroundColor(getResources().getColor(R.color.my_green_color));
 
+            }
+        });
+
+        // go to second activity button
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,AddCardActivity.class);
+                intent.putExtra("key",60);
+                finish();
             }
         });
 

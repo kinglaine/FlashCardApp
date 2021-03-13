@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">WoodleyFlashCardApp</string>
     <string name="who_is_the_44th_president_of_the_united_states">Who is the 44th president of the United-States?</string>
-    <string name="barack_obama">Barack Obama</string>
+    <string name="title_activity_add_card">AddCardActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
 </resources>
