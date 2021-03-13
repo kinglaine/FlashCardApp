@@ -2,6 +2,7 @@ package com.example.woodleyflashcardapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,9 +16,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Intent intent = new Intent(MainActivity.this,AddCardActivity.class);
-        intent.putExtra("key",60);
-        startActivity(intent);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -27,32 +25,65 @@ public class MainActivity extends AppCompatActivity {
         TextView answers1 = findViewById(R.id.answer1);
         TextView answers2 = findViewById(R.id.answer2);
         TextView answers3 = findViewById(R.id.answer3);
-        ImageView eyebutton = findViewById(R.id.toggle_choices_visibility);
-        ImageView add = findViewById(R.id.add);
+        ImageView eyeofff = findViewById(R.id.toggle_choices_visibility);
+        ImageView eyeonn = findViewById(R.id.toggle_choices_Invisibility);
+        ImageView addButton = findViewById(R.id.add);
 
 
 
-        eyebutton.setOnClickListener(new View.OnClickListener() {
+
+       /* Eye toggle using boolean
+       eyeofff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                eyebutton.setImageResource(R.drawable.eyeoff);
+                eyeofff.setImageResource(R.drawable.eyeoff);
                 if (isShowingAnswers) {
                     answers1.setVisibility(View.VISIBLE);
                     answers2.setVisibility(View.VISIBLE);
                     answers3.setVisibility(View.VISIBLE);
-                    eyebutton.setImageResource(R.drawable.eyeoff);
-                    isShowingAnswers= false;
+                    eyeofff.setImageResource(R.drawable.eyeoff);
+                    isShowingAnswers= true;
 
                 } if (!isShowingAnswers) {
                 answers1.setVisibility(View.INVISIBLE);
                 answers2.setVisibility(View.INVISIBLE);
                 answers3.setVisibility(View.INVISIBLE);
-                eyebutton.setImageResource(R.drawable.eyeon);
+                eyeonn.setImageResource(R.drawable.eyeon);
                 isShowingAnswers = true;
 
             }
             }
+        });*/
+        // toggle for eye off make answer invisible
+        eyeofff.setOnClickListener(new View.OnClickListener() {
+            boolean isShowingAnswers = true;
+            @Override
+            public void onClick(View v) {
+                eyeofff.setImageResource(R.drawable.eyeoff);
+                eyeonn.setImageResource(R.drawable.eyeon);
+                eyeofff.setVisibility(View.VISIBLE);
+                eyeonn.setVisibility(View.INVISIBLE);
+                answers1.setVisibility(View.VISIBLE);
+                answers2.setVisibility(View.VISIBLE);
+                answers3.setVisibility(View.VISIBLE);
+            }
         });
+
+        // toggle for eye on make answer visible
+        eyeonn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                eyeofff.setImageResource(R.drawable.eyeoff);
+                eyeonn.setImageResource(R.drawable.eyeon);
+                eyeofff.setVisibility(View.VISIBLE);
+                eyeonn.setVisibility(View.INVISIBLE);
+                answers1.setVisibility(View.INVISIBLE);
+                answers2.setVisibility(View.INVISIBLE);
+                answers3.setVisibility(View.INVISIBLE);
+
+            }
+        });
+
 
 
         questionTextView.setOnClickListener(new View.OnClickListener() {
@@ -95,16 +126,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // go to second activity button
-        add.setOnClickListener(new View.OnClickListener() {
+        // add button to get to other activity
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,AddCardActivity.class);
-                intent.putExtra("key",60);
-                finish();
+                Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
+                MainActivity.this.startActivityForResult(intent,60);
+                addButton.setVisibility(View.INVISIBLE);
             }
         });
 
 
     }
-}
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 60 ) {
+            String newQuestion = data.getExtras().getString("newQuestion");
+            String newAnswer = data.getExtras().getString("newAnswer");
+
+            ((TextView) findViewById(R.id.flashcard_question)).setText(newQuestion);
+            ((TextView) findViewById(R.id.flashcard_answer)).setText(newAnswer);
+        }
+    }
+
+    }
+
