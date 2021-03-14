@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class AddCardActivity extends AppCompatActivity {
 
@@ -32,7 +33,8 @@ public class AddCardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent =new Intent(AddCardActivity.this,MainActivity.class);
                 AddCardActivity.this.startActivityForResult(intent,60);
-                ((EditText) findViewById(R.id.QuestionActivity2)).getText().toString();
+              String question = ((EditText) findViewById(R.id.QuestionActivity2)).getText().toString();
+               String answer =  ((EditText) findViewById(R.id.AnswersActivity2)).getText().toString();
                 Intent data = new Intent();
                 data.putExtra("string1","newQuestion");
                 data.putExtra("string2", "newAnswer");

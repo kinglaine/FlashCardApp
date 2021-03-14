@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,9 +43,9 @@ public class MainActivity extends AppCompatActivity {
                     answers2.setVisibility(View.VISIBLE);
                     answers3.setVisibility(View.VISIBLE);
                     eyeofff.setImageResource(R.drawable.eyeoff);
-                    isShowingAnswers= true;
+                    isShowingAnswers= false;
 
-                } if (!isShowingAnswers) {
+                } else {
                 answers1.setVisibility(View.INVISIBLE);
                 answers2.setVisibility(View.INVISIBLE);
                 answers3.setVisibility(View.INVISIBLE);
@@ -136,17 +137,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 60 ) {
-            String newQuestion = data.getExtras().getString("newQuestion");
-            String newAnswer = data.getExtras().getString("newAnswer");
-
-            ((TextView) findViewById(R.id.flashcard_question)).setText(newQuestion);
-            ((TextView) findViewById(R.id.flashcard_answer)).setText(newAnswer);
+            String String1 = ((EditText) findViewById(R.id.QuestionActivity2)).getText().toString();
+            String String2 = ((EditText) findViewById(R.id.AnswersActivity2)).getText().toString();
+            TextView questionView = (TextView) findViewById(R.id.flashcard_question);
+            questionView.setText(String1);
+            TextView answerView = (TextView) findViewById(R.id.flashcard_answer);
+            answerView.setText(String2);
         }
     }
 
