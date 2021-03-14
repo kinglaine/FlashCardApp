@@ -140,14 +140,18 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 60 ) {
-            String String1 = ((EditText) findViewById(R.id.QuestionActivity2)).getText().toString();
-            String String2 = ((EditText) findViewById(R.id.AnswersActivity2)).getText().toString();
+            String question = data.getExtras().getString("string1");
+            String answer = data.getExtras().getString("string2");
+
+            data.putExtra("string1",question);
+            data.putExtra("string2", answer);
             TextView questionView = (TextView) findViewById(R.id.flashcard_question);
-            questionView.setText(String1);
+            questionView.setText(question);
             TextView answerView = (TextView) findViewById(R.id.flashcard_answer);
-            answerView.setText(String2);
+            answerView.setText(answer);
         }
     }
 

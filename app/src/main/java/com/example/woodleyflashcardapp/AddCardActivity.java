@@ -33,11 +33,11 @@ public class AddCardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent =new Intent(AddCardActivity.this,MainActivity.class);
                 AddCardActivity.this.startActivityForResult(intent,60);
-              String question = ((EditText) findViewById(R.id.QuestionActivity2)).getText().toString();
-               String answer =  ((EditText) findViewById(R.id.AnswersActivity2)).getText().toString();
                 Intent data = new Intent();
-                data.putExtra("string1","newQuestion");
-                data.putExtra("string2", "newAnswer");
+                String question = ((EditText) findViewById(R.id.QuestionActivity2)).getText().toString();
+                String answer = ((EditText) findViewById(R.id.AnswersActivity2)).getText().toString();
+                data.putExtra("string1",question);
+                data.putExtra("string2", answer);
                 setResult(RESULT_OK,data);
                 finish();
             }
