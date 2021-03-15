@@ -29,64 +29,37 @@ public class MainActivity extends AppCompatActivity {
         ImageView eyeofff = findViewById(R.id.toggle_choices_visibility);
         ImageView eyeonn = findViewById(R.id.toggle_choices_Invisibility);
         ImageView addButton = findViewById(R.id.add);
+        ImageView editButton = findViewById(R.id.editOrAnswer);
 
 
+       // Eye toggle using boolean
 
-
-       /* Eye toggle using boolean
-       eyeofff.setOnClickListener(new View.OnClickListener() {
-            @Override
+        // toggle for eye off make answer invisible
+        /*eyeofff.setOnClickListener(new View.OnClickListener() {
+            boolean isShowingAnswers = true;
             public void onClick(View v) {
-                eyeofff.setImageResource(R.drawable.eyeoff);
                 if (isShowingAnswers) {
+                    eyeonn.setVisibility(View.INVISIBLE);
+                    eyeofff.setVisibility(View.VISIBLE);
                     answers1.setVisibility(View.VISIBLE);
                     answers2.setVisibility(View.VISIBLE);
                     answers3.setVisibility(View.VISIBLE);
-                    eyeofff.setImageResource(R.drawable.eyeoff);
                     isShowingAnswers= false;
 
-                } else {
-                answers1.setVisibility(View.INVISIBLE);
-                answers2.setVisibility(View.INVISIBLE);
-                answers3.setVisibility(View.INVISIBLE);
-                eyeonn.setImageResource(R.drawable.eyeon);
-                isShowingAnswers = true;
+                }
+                else {
+                    eyeonn.setImageResource(R.drawable.eyeon);
+                    answers1.setVisibility(View.INVISIBLE);
+                    answers2.setVisibility(View.INVISIBLE);
+                    answers3.setVisibility(View.INVISIBLE);
+                    eyeofff.setVisibility(View.VISIBLE);
+                    isShowingAnswers = true;
 
-            }
+                }
             }
         });*/
-        // toggle for eye off make answer invisible
-        eyeofff.setOnClickListener(new View.OnClickListener() {
-            boolean isShowingAnswers = true;
-            @Override
-            public void onClick(View v) {
-                eyeofff.setImageResource(R.drawable.eyeoff);
-                eyeonn.setImageResource(R.drawable.eyeon);
-                eyeofff.setVisibility(View.VISIBLE);
-                eyeonn.setVisibility(View.INVISIBLE);
-                answers1.setVisibility(View.VISIBLE);
-                answers2.setVisibility(View.VISIBLE);
-                answers3.setVisibility(View.VISIBLE);
-            }
-        });
 
-        // toggle for eye on make answer visible
-        eyeonn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                eyeofff.setImageResource(R.drawable.eyeoff);
-                eyeonn.setImageResource(R.drawable.eyeon);
-                eyeofff.setVisibility(View.VISIBLE);
-                eyeonn.setVisibility(View.INVISIBLE);
-                answers1.setVisibility(View.INVISIBLE);
-                answers2.setVisibility(View.INVISIBLE);
-                answers3.setVisibility(View.INVISIBLE);
-
-            }
-        });
-
-
-
+        // Toggle back and forth between question and answer
         questionTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Change answers background color to verify if true or false
-
         answers1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,27 +105,51 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
                 MainActivity.this.startActivityForResult(intent,60);
-                addButton.setVisibility(View.INVISIBLE);
+
+
+            }
+
+        });
+
+        // Create edit button for current question and answer
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,AddCardActivity.class);
+                String question =  ((TextView) findViewById(R.id.flashcard_question)).getText().toString();
+                String answer = ((TextView) findViewById(R.id.flashcard_answer)).getText().toString();
+                intent.putExtra("key1",question);
+                intent.putExtra("key2",answer);
+                MainActivity.this.startActivityForResult(intent,60);
             }
         });
 
     }
+    // display new user Question and answer to flash card
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 60 ) {
-            String question = data.getExtras().getString("string1");
-            String answer = data.getExtras().getString("string2");
+            String string1 = data.getExtras().getString("string1");
+            String string2 = data.getExtras().getString("string2");
+            ((TextView)findViewById(R.id.flashcard_question)).setText(string1);
+            ((TextView)findViewById(R.id.flashcard_answer)).setText(string2);
 
-            data.putExtra("string1",question);
-            data.putExtra("string2", answer);
-            TextView questionView = (TextView) findViewById(R.id.flashcard_question);
-            questionView.setText(question);
-            TextView answerView = (TextView) findViewById(R.id.flashcard_answer);
-            answerView.setText(answer);
+            // Hide multiple choices in main
+            TextView answers1 = findViewById(R.id.answer1);
+            TextView answers2 = findViewById(R.id.answer2);
+            TextView answers3 = findViewById(R.id.answer3);
+            ImageView eyeofff = findViewById(R.id.toggle_choices_visibility);
+            ImageView eyeonn = findViewById(R.id.toggle_choices_Invisibility);
+            answers1.setVisibility(View.INVISIBLE);
+            answers2.setVisibility(View.INVISIBLE);
+            answers3.setVisibility(View.INVISIBLE);
+            eyeonn.setVisibility(View.GONE);
+            eyeofff.setVisibility(View.GONE);
+
         }
     }
 
-    }
+}
 
