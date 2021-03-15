@@ -26,6 +26,26 @@
         android:layout_marginRight="20dp"
         android:hint="Enter your answer Here"
         android:textColorHint="#DCB7B7"/>
+    <EditText
+        android:id="@+id/AnswersActivity3"
+        android:layout_below="@id/AnswersActivity2"
+        android:layout_width="329dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="20dp"
+        android:hint="Enter wrong answer Here"
+        android:textColorHint="#DCB7B7"/>
+    <EditText
+        android:id="@+id/AnswersActivity4"
+        android:layout_below="@id/AnswersActivity3"
+        android:layout_width="329dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="20dp"
+        android:hint="Enter another wrong answer Here"
+        android:textColorHint="#DCB7B7"/>
     <ImageView
         android:id="@+id/cancel"
         android:layout_width="400dp"

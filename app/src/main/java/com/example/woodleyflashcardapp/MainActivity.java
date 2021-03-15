@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
     boolean isShowingAnswers = true;
@@ -118,6 +121,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this,AddCardActivity.class);
                 String question =  ((TextView) findViewById(R.id.flashcard_question)).getText().toString();
                 String answer = ((TextView) findViewById(R.id.flashcard_answer)).getText().toString();
+                String answer1n1 = ((TextView) findViewById(R.id.answer3)).getText().toString();
+                String wrongAnswer1n2 = ((TextView) findViewById(R.id.answer1)).getText().toString();
+                String wrongAnswer1n3 = ((TextView) findViewById(R.id.answer2)).getText().toString();
+
                 intent.putExtra("key1",question);
                 intent.putExtra("key2",answer);
                 MainActivity.this.startActivityForResult(intent,60);
@@ -136,17 +143,11 @@ public class MainActivity extends AppCompatActivity {
             ((TextView)findViewById(R.id.flashcard_question)).setText(string1);
             ((TextView)findViewById(R.id.flashcard_answer)).setText(string2);
 
-            // Hide multiple choices in main
-            TextView answers1 = findViewById(R.id.answer1);
-            TextView answers2 = findViewById(R.id.answer2);
-            TextView answers3 = findViewById(R.id.answer3);
-            ImageView eyeofff = findViewById(R.id.toggle_choices_visibility);
-            ImageView eyeonn = findViewById(R.id.toggle_choices_Invisibility);
-            answers1.setVisibility(View.INVISIBLE);
-            answers2.setVisibility(View.INVISIBLE);
-            answers3.setVisibility(View.INVISIBLE);
-            eyeonn.setVisibility(View.GONE);
-            eyeofff.setVisibility(View.GONE);
+            // snack bar
+            Snackbar.make(findViewById(R.id.flashcard_question),
+                    "Card successfully created",
+                    Snackbar.LENGTH_SHORT)
+                    .show();
 
         }
     }
