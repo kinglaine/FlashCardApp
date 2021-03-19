@@ -18,7 +18,7 @@
 - [x] An error message is shown if the user doesn't enter both a Question and an Answer
 - [x] A notification is shown if the card was created successfully
 - [x] User can also enter multiple choice answers when creating a card
-- [ ] App is further styled and customized!
+- [x] App is further styled and customized!
 
 
 
@@ -41,5 +41,5 @@
 - [x] toggle the flashcard between the question side and the answer side
 - [x] Style the question and answer side of the card to better distinguish between the two sides
 - [x] Add selectable multiple choice answers beneath the card
-   - [x] Change the background color of the multiple choice answers when clicked to indicate whether the question answered correctly
+- [x] Change the background color of the multiple choice answers when clicked to indicate whether the question answered correctly
 - [x] Further customize and style the card
