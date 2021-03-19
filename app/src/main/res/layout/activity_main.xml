@@ -109,6 +109,14 @@
         android:layout_marginTop="570dp"
         android:src="@drawable/ic_edit"
         android:background="#00BCD4"/>
+    <ImageView
+        android:id="@+id/next"
+        android:layout_height="400dp"
+        android:layout_width="40dp"
+        android:layout_marginTop="148dp"
+        android:layout_marginLeft="320dp"
+        android:src="@drawable/ic_next"
+        />
 
     />
 </RelativeLayout>

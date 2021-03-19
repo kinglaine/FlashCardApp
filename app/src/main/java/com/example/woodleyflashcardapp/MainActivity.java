@@ -14,14 +14,28 @@ import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     boolean isShowingAnswers = true;
     private Object AddCardActivity;
+    FlashcardDatabase flashcardDatabase;
+    // variable to hold a list of flashcards
+    List<Flashcard> allFlashcards;
+    //variable to track cards
+    int currentCardDisplayedIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        flashcardDatabase = new FlashcardDatabase(this);
+        allFlashcards = flashcardDatabase.getAllCards();
+        if (allFlashcards != null && allFlashcards.size()>0){
+            ((TextView) findViewById(R.id.flashcard_question)).setText(allFlashcards.get(0).getQuestion());
+            ((TextView) findViewById(R.id.flashcard_answer)).setText(allFlashcards.get(0).getAnswer());
+
+        }
 
 
         TextView questionTextView = findViewById(R.id.flashcard_question);
@@ -34,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView addButton = findViewById(R.id.add);
         ImageView eraserButton = findViewById(R.id.eraser);
         ImageView editButton = findViewById(R.id.editbutton);
+        ImageView nextButton = findViewById(R.id.next);
 
 
        // Eye toggle using boolean
@@ -178,13 +193,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // initialize data base
+        flashcardDatabase = new FlashcardDatabase(getApplicationContext());
+
+        // next button for saved flash card
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(allFlashcards.size() == 0)
+                    return;
+                currentCardDisplayedIndex++;
+
+                if (currentCardDisplayedIndex >= allFlashcards.size()) {
+                    Snackbar.make(findViewById(R.id.next),"You've reached the end of the cards, going back to start.", Snackbar.LENGTH_SHORT).show();
+                    currentCardDisplayedIndex=0;
+                }
+                allFlashcards = flashcardDatabase.getAllCards();
+                Flashcard flashcard = allFlashcards.get(currentCardDisplayedIndex);
+
+                ((TextView) findViewById(R.id.flashcard_question)).setText(flashcard.getQuestion());
+                ((TextView) findViewById(R.id.flashcard_answer)).setText(flashcard.getAnswer());
+
+            }
+        });
+
     }
     // display new user Question and answer to flash card
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 60 ) {
+        if (requestCode == 60 && resultCode == RESULT_OK ) {
             String string1 = data.getExtras().getString("string1");
             String string2 = data.getExtras().getString("string2");
             String answerChoice1 = data.getExtras().getString("string3");
@@ -200,9 +238,13 @@ public class MainActivity extends AppCompatActivity {
                     "Card successfully created",
                     Snackbar.LENGTH_SHORT)
                     .show();
+            // save a flash card
+            flashcardDatabase.insertCard(new Flashcard(string1, string2));
+            allFlashcards = flashcardDatabase.getAllCards();
 
         }
     }
+
 
 }
 
