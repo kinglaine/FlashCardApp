@@ -5,8 +5,7 @@
 
 ### App Walk-though
 
-<img src=![GIF-Animation](https://user-images.githubusercontent.com/72886722/111089437-20f36300-84e9-11eb-978a-ddfdbc6d0ca6.gif)width=200><br>
-
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/72886722/111740306-c0925780-8841-11eb-9c0b-05e0582bdb88.gif)
 ## Required
 - [x] User can click on a ‘+’ button that takes the user to new ‘Add Card Screen’
 - [x] The 'Add Card Screen' has a cancel button to take the user back to the main screen
