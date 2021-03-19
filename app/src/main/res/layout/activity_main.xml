@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D9CEEC"
     tools:context=".MainActivity">
 
     <TextView
@@ -74,14 +75,14 @@
         android:layout_width="400dp"
         android:layout_height="40dp"
         android:layout_below="@id/answer3"
-        android:layout_marginTop="114dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/eyeoff" />
     <ImageView
         android:id="@+id/toggle_choices_Invisibility"
         android:layout_width="400dp"
         android:layout_height="40dp"
         android:layout_below="@id/answer3"
-        android:layout_marginTop="114dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/eyeon" />
 
 
@@ -90,15 +91,24 @@
             android:layout_width="400dp"
             android:layout_height="50dp"
             android:layout_marginLeft="250dp"
-            android:layout_marginTop="580dp"
-            android:src="@drawable/ic_add" />
+            android:layout_marginTop="570dp"
+            android:src="@drawable/ic_add"
+            android:background="#00BCD4"/>
     <ImageView
-        android:id="@+id/editOrAnswer"
+        android:id="@+id/eraser"
         android:layout_height="400dp"
         android:layout_width="40dp"
         android:layout_marginTop="50dp"
         android:src="@drawable/eraser"
         />
+    <ImageView
+        android:id="@+id/editbutton"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="260dp"
+        android:layout_marginTop="570dp"
+        android:src="@drawable/ic_edit"
+        android:background="#00BCD4"/>
 
     />
 </RelativeLayout>

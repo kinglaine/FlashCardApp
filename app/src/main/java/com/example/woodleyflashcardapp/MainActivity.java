@@ -32,17 +32,17 @@ public class MainActivity extends AppCompatActivity {
         ImageView eyeofff = findViewById(R.id.toggle_choices_visibility);
         ImageView eyeonn = findViewById(R.id.toggle_choices_Invisibility);
         ImageView addButton = findViewById(R.id.add);
-        ImageView editButton = findViewById(R.id.editOrAnswer);
+        ImageView eraserButton = findViewById(R.id.eraser);
+        ImageView editButton = findViewById(R.id.editbutton);
 
 
        // Eye toggle using boolean
-
-        // toggle for eye off make answer invisible
-        /*eyeofff.setOnClickListener(new View.OnClickListener() {
+        // toggle for eye off make answers invisible
+        eyeofff.setOnClickListener(new View.OnClickListener() {
             boolean isShowingAnswers = true;
             public void onClick(View v) {
                 if (isShowingAnswers) {
-                    eyeonn.setVisibility(View.INVISIBLE);
+                    eyeofff.setImageResource(R.drawable.eyeoff);
                     eyeofff.setVisibility(View.VISIBLE);
                     answers1.setVisibility(View.VISIBLE);
                     answers2.setVisibility(View.VISIBLE);
@@ -55,12 +55,38 @@ public class MainActivity extends AppCompatActivity {
                     answers1.setVisibility(View.INVISIBLE);
                     answers2.setVisibility(View.INVISIBLE);
                     answers3.setVisibility(View.INVISIBLE);
-                    eyeofff.setVisibility(View.VISIBLE);
+                    eyeonn.setVisibility(View.VISIBLE);
+                    eyeofff.setVisibility(View.INVISIBLE);
                     isShowingAnswers = true;
 
                 }
             }
-        });*/
+        });
+        // toggle for eye onn make answers visible
+        eyeonn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isShowingAnswers) {
+                    eyeofff.setVisibility(View.VISIBLE);
+                    answers1.setVisibility(View.VISIBLE);
+                    answers2.setVisibility(View.VISIBLE);
+                    answers3.setVisibility(View.VISIBLE);
+                    isShowingAnswers= false;
+
+                }
+                else {
+                    eyeonn.setImageResource(R.drawable.eyeon);
+                    answers1.setVisibility(View.INVISIBLE);
+                    answers2.setVisibility(View.INVISIBLE);
+                    answers3.setVisibility(View.INVISIBLE);
+                    eyeonn.setVisibility(View.VISIBLE);
+                    eyeofff.setVisibility(View.INVISIBLE);
+                    isShowingAnswers = true;
+
+                }
+
+            }
+        });
 
         // Toggle back and forth between question and answer
         questionTextView.setOnClickListener(new View.OnClickListener() {
@@ -114,8 +140,8 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        // Create edit button for current question and answer
-        editButton.setOnClickListener(new View.OnClickListener() {
+        // Create eraser for current question and answer
+        eraserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,AddCardActivity.class);
@@ -131,6 +157,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Create edit button for currently display question and answer
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
+                //get what ever is in question and answer to the edit text in activity2
+                String question =  ((TextView) findViewById(R.id.flashcard_question)).getText().toString();
+                String answer = ((TextView) findViewById(R.id.flashcard_answer)).getText().toString();
+                String answerChoice1 = ((TextView) findViewById(R.id.answer3)).getText().toString();
+                String wrongAnswerChoice1 = ((TextView) findViewById(R.id.answer1)).getText().toString();
+                String wrongAnswerChoice2 = ((TextView) findViewById(R.id.answer2)).getText().toString();
+                intent.putExtra("stringKey1",question);
+                intent.putExtra("stringKey2",answer);
+                intent.putExtra("stringKey3",answerChoice1);
+                intent.putExtra("stringKey4",wrongAnswerChoice1);
+                intent.putExtra("stringKey5",wrongAnswerChoice2);
+                MainActivity.this.startActivityForResult(intent,60);
+
+            }
+        });
+
     }
     // display new user Question and answer to flash card
     @Override
@@ -140,9 +187,14 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 60 ) {
             String string1 = data.getExtras().getString("string1");
             String string2 = data.getExtras().getString("string2");
+            String answerChoice1 = data.getExtras().getString("string3");
+            String wrongAnswerChoice1 = data.getExtras().getString("string4");
+            String wrongAnswerChoice2 = data.getExtras().getString("string5");
             ((TextView)findViewById(R.id.flashcard_question)).setText(string1);
             ((TextView)findViewById(R.id.flashcard_answer)).setText(string2);
-
+            ((TextView) findViewById(R.id.answer3)).setText(answerChoice1);
+            ((TextView) findViewById(R.id.answer1)).setText(wrongAnswerChoice1);
+            ((TextView) findViewById(R.id.answer2)).setText(wrongAnswerChoice2 );
             // snack bar
             Snackbar.make(findViewById(R.id.flashcard_question),
                     "Card successfully created",
