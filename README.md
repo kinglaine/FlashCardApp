@@ -1,7 +1,7 @@
 ## Lab 3
 
 ### App Description
-`TODO://` save user cards in data base
+`TODO://` save user cards in database
 
 ### App Walk-though
 ![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/72886722/111752464-fa1f8e80-8852-11eb-9a07-7867284439d2.gif)
