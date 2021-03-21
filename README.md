@@ -4,7 +4,7 @@
 `TODO://` save user cards in database
 
 ### App Walk-though
-<img src="https://ezgif.com/cut-video/ezgif-2-5fadd8bf108c.mp4" width=200><br>
+![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/72886722/111895848-9b811e80-89d2-11eb-901e-bd58e64815b6.gif)
 
 ## Required
 - [x] User can create a card and still see their created card when the app is relaunched.
