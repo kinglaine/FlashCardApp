@@ -1,20 +1,19 @@
 ## Lab 3
 
 ### App Description
-`TODO://` save user cards in data base
+`TODO://` save user cards in database
 
 ### App Walk-though
-![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/72886722/111752464-fa1f8e80-8852-11eb-9a07-7867284439d2.gif)
-
+![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/72886722/111895848-9b811e80-89d2-11eb-901e-bd58e64815b6.gif)
 
 ## Required
 - [x] User can create a card and still see their created card when the app is relaunched.
 - [x] User can create muliple cards and browse through all created cards
 
 ## Optional
-- [ ] User can delete a card and no longer see it in their deck anymore
+- [x] User can delete a card and no longer see it in their deck anymore
 - [ ] Flashcards are shown in random order instead of the order they were created in
-- [ ] User can edit a card and see the edit saved when they browse through their deck of cards
+- [x] User can edit a card and see the edit saved when they browse through their deck of cards
 - [ ] User can create flashcards with multiple answers and be able to browse through cards with multiple choice answers shown
 
 
