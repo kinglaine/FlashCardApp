@@ -5,6 +5,7 @@
 
 ### App Walk-though
 https://ezgif.com/cut-video/ezgif-2-5fadd8bf108c.mp4
+
 ## Required
 - [x] User can create a card and still see their created card when the app is relaunched.
 - [x] User can create muliple cards and browse through all created cards
