@@ -20,7 +20,8 @@
         android:gravity="center"
         android:textColor="#856C6C"
         android:background="@drawable/card_background"
-        android:elevation="20dp"/>
+        android:elevation="20dp"
+        />
 
     <TextView
         android:id="@+id/flashcard_answer"
@@ -99,7 +100,7 @@
         android:layout_height="400dp"
         android:layout_width="40dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/eraser"
+        android:src="@drawable/ic_trashcan"
         />
     <ImageView
         android:id="@+id/editbutton"
@@ -115,8 +116,38 @@
         android:layout_width="40dp"
         android:layout_marginTop="148dp"
         android:layout_marginLeft="320dp"
-        android:src="@drawable/ic_next"
-        />
+        android:src="@drawable/ic_next" />
+
+    <ImageView
+        android:id="@+id/emptyCard"
+        android:layout_width="400dp"
+        android:layout_height="800dp"
+        android:layout_marginTop="256dp"
+        android:layout_marginBottom="133dp"
+        android:src="@drawable/ic_cards"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/emptyText1"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="25dp"
+        android:gravity="center"
+        android:text="Flashcard Empty"
+        android:textSize="20sp"
+        android:visibility="invisible"/>
+    <TextView
+        android:id="@+id/emptyText2"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginLeft="25dp"
+        android:gravity="center"
+        android:text="Press on add button to create new cards"
+        android:textSize="20sp"
+        android:visibility="invisible"/>
+    />
 
     />
 </RelativeLayout>

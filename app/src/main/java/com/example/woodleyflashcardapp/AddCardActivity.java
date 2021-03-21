@@ -36,6 +36,7 @@ public class AddCardActivity extends AppCompatActivity {
         saveUserQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 // Grabbing text from edit xml
                 String question =  ((EditText) findViewById(R.id.QuestionActivity2)).getText().toString();
                 String answer = ((EditText) findViewById(R.id.AnswersActivity2)).getText().toString();

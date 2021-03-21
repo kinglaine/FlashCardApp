@@ -15,8 +15,14 @@ import android.widget.TextView;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+    //random method to display cards in random using the  index variable currentCardDisplayedIndex
+    public int getRandomNumber(int minNumber, int maxNumber) {
+        Random rand = new Random();
+        return rand.nextInt((maxNumber - minNumber) + 1) + minNumber;
+    }
     boolean isShowingAnswers = true;
     private Object AddCardActivity;
     FlashcardDatabase flashcardDatabase;
@@ -37,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-
         TextView questionTextView = findViewById(R.id.flashcard_question);
         TextView answerTextView = findViewById(R.id.flashcard_answer);
         TextView answers1 = findViewById(R.id.answer1);
@@ -49,9 +54,18 @@ public class MainActivity extends AppCompatActivity {
         ImageView eraserButton = findViewById(R.id.eraser);
         ImageView editButton = findViewById(R.id.editbutton);
         ImageView nextButton = findViewById(R.id.next);
+        TextView emptyText1 = findViewById(R.id.emptyText1);
+        TextView emptyText2 = findViewById(R.id.emptyText2);
+        ImageView emptyCard = findViewById(R.id.emptyCard);
+
+        answers1.setVisibility(View.INVISIBLE);
+        answers2.setVisibility(View.INVISIBLE);
+        answers3.setVisibility(View.INVISIBLE);
 
 
-       // Eye toggle using boolean
+
+
+        // Eye toggle using boolean
         // toggle for eye off make answers invisible
         eyeofff.setOnClickListener(new View.OnClickListener() {
             boolean isShowingAnswers = true;
@@ -155,20 +169,63 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        // Create eraser for current question and answer
+        // Create delete button to delete flashCards
         eraserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,AddCardActivity.class);
-                String question =  ((TextView) findViewById(R.id.flashcard_question)).getText().toString();
-                String answer = ((TextView) findViewById(R.id.flashcard_answer)).getText().toString();
-                String answer1n1 = ((TextView) findViewById(R.id.answer3)).getText().toString();
-                String wrongAnswer1n2 = ((TextView) findViewById(R.id.answer1)).getText().toString();
-                String wrongAnswer1n3 = ((TextView) findViewById(R.id.answer2)).getText().toString();
+                Flashcard flashcard = allFlashcards.get(currentCardDisplayedIndex);
+                if (currentCardDisplayedIndex > allFlashcards.size() - 1) {
+                    currentCardDisplayedIndex = 0;
 
-                intent.putExtra("key1",question);
-                intent.putExtra("key2",answer);
-                MainActivity.this.startActivityForResult(intent,60);
+                currentCardDisplayedIndex++;}
+                allFlashcards = flashcardDatabase.getAllCards();
+                flashcardDatabase.deleteCard(((TextView) findViewById(R.id.flashcard_question)).getText().toString());
+                flashcardDatabase.deleteCard(((TextView) findViewById(R.id.flashcard_answer)).getText().toString());
+
+                /*if (allFlashcards.size() == 0)
+                    return;
+                    currentCardDisplayedIndex++;*/
+                if (allFlashcards.size() > 0) {
+                    questionTextView.setVisibility(View.VISIBLE);
+                    answerTextView.setVisibility(View.INVISIBLE);
+                    answers1.setVisibility(View.INVISIBLE);
+                    answers2.setVisibility(View.INVISIBLE);
+                    answers3.setVisibility(View.INVISIBLE);
+
+                    eraserButton.setVisibility(View.VISIBLE);
+                    nextButton.setVisibility(View.VISIBLE);
+                    eyeofff.setVisibility(View.VISIBLE);
+                    eyeonn.setVisibility(View.VISIBLE);
+                    editButton.setVisibility(View.VISIBLE);
+                    ((TextView) findViewById(R.id.flashcard_question)).setText(flashcard.getQuestion());
+                    ((TextView) findViewById(R.id.flashcard_answer)).setText(flashcard.getAnswer());
+
+                } else if (allFlashcards.size()==0) {
+                    allFlashcards = flashcardDatabase.getAllCards();
+                    questionTextView.setVisibility(View.INVISIBLE);
+                    answerTextView.setVisibility(View.INVISIBLE);
+                    answers1.setVisibility(View.INVISIBLE);
+                    answers2.setVisibility(View.INVISIBLE);
+                    answers3.setVisibility(View.INVISIBLE);
+
+                    eraserButton.setVisibility(View.INVISIBLE);
+                    nextButton.setVisibility(View.INVISIBLE);
+                    eyeofff.setVisibility(View.INVISIBLE);
+                    eyeonn.setVisibility(View.INVISIBLE);
+                    editButton.setVisibility(View.INVISIBLE);
+                    emptyCard.setVisibility(View.VISIBLE);
+                    emptyText1.setVisibility(View.VISIBLE);
+                    emptyText2.setVisibility(View.VISIBLE);
+                }
+
+                //Use delete method from database
+
+                /*flashcardDatabase.deleteCard(((TextView) findViewById(R.id.flashcard_answer)).getText().toString());
+                flashcardDatabase.deleteCard(((TextView) findViewById(R.id.answer1)).getText().toString());
+                flashcardDatabase.deleteCard(((TextView) findViewById(R.id.answer2)).getText().toString());
+                flashcardDatabase.deleteCard(((TextView) findViewById(R.id.answer3)).getText().toString());*/
+
+
             }
         });
 
@@ -200,6 +257,7 @@ public class MainActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(allFlashcards.size() == 0)
                     return;
                 currentCardDisplayedIndex++;
