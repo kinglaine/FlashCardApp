@@ -4,7 +4,7 @@
 `TODO://` save user cards in database
 
 ### App Walk-though
-https://user-images.githubusercontent.com/72886722/111895706-9ff90780-89d1-11eb-8748-a017945c83dc.mp4
+https://ezgif.com/cut-video/ezgif-2-5fadd8bf108c.mp4
 ## Required
 - [x] User can create a card and still see their created card when the app is relaunched.
 - [x] User can create muliple cards and browse through all created cards
