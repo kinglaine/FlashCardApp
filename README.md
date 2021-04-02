@@ -41,8 +41,8 @@
 `TODO://` Ugrade version of flashCard  that allows user to create questions and answers
 
 ### App Walk-though
-
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/72886722/111740306-c0925780-8841-11eb-9c0b-05e0582bdb88.gif)
+
 ## Required
 - [x] User can click on a ‘+’ button that takes the user to new ‘Add Card Screen’
 - [x] The 'Add Card Screen' has a cancel button to take the user back to the main screen
