@@ -1,13 +1,19 @@
 package com.example.woodleyflashcardapp;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     //variable to track cards
     int currentCardDisplayedIndex = 0;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,8 +128,22 @@ public class MainActivity extends AppCompatActivity {
         questionTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                questionTextView.setVisibility(View.INVISIBLE);
-                answerTextView.setVisibility(View.VISIBLE);
+                //animation to reveal answer
+                View answerSideView = findViewById(R.id.flashcard_answer);
+                View questionSideView = findViewById(R.id.flashcard_question);
+                //get the center for the clipping circle
+                int cx = answerSideView.getWidth()/2;
+                int cy = answerSideView.getHeight()/2;
+                //get the final radius for the clipping circle
+                float finalRadius =(float) Math.hypot(cx,cy);
+                //Create the animator for this view (the start radius is zero)
+                Animator anim = ViewAnimationUtils.createCircularReveal(answerSideView,cx,cy,0f,finalRadius);
+                //hide the question and show the answer to prepare for playing the animation!
+                questionSideView.setVisibility(View.INVISIBLE);
+                answerSideView.setVisibility(View.VISIBLE);
+
+                anim.setDuration(1000);
+                anim.start();
 
             }
         });
@@ -163,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
                 MainActivity.this.startActivityForResult(intent,60);
+                overridePendingTransition(R.anim.right_in,R.anim.left_out);
 
 
             }
@@ -271,6 +293,28 @@ public class MainActivity extends AppCompatActivity {
 
                 ((TextView) findViewById(R.id.flashcard_question)).setText(flashcard.getQuestion());
                 ((TextView) findViewById(R.id.flashcard_answer)).setText(flashcard.getAnswer());
+                // add animation when going to next question
+                final Animation leftOutAnim = AnimationUtils.loadAnimation(v.getContext(),R.anim.left_out);
+                final Animation rightInAnim = AnimationUtils.loadAnimation(v.getContext(),R.anim.right_in);
+                leftOutAnim.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                        // this method is called when the animation first starts
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        // this method is called when the animation is finished playing
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                        // we don't need to worry about this method
+                    }
+                });
+                findViewById(R.id.flashcard_question).startAnimation(leftOutAnim);
+                findViewById(R.id.flashcard_question).startAnimation(rightInAnim);
+
 
             }
         });
