@@ -1,7 +1,7 @@
 ## Lab 4
 
 ### App Description
-`TODO://` FlashCard
+`TODO://` Add transition animation
 ### App Walk-though
 `TODO://` ![ezgif com-gif-maker (3)](https://user-images.githubusercontent.com/72886722/113418330-1efb2200-937a-11eb-9868-e76140451f93.gif)
 
