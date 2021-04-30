@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#CCCDD8"
-    tools:context=".MainActivity">
+    tools:context="wood.example.woodleyflashcardapp.MainActivity">
 
     <TextView
         android:id="@+id/flashcard_question"
@@ -132,7 +132,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="358dp"
         android:elevation="25dp"
-        android:text="Next" />
+        android:text="@string/next" />
 
     <TextView
         android:id="@+id/textView2"

@@ -1,23 +1,22 @@
-package com.example.woodleyflashcardapp;
+package wood.example.woodleyflashcardapp;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.wood.woodleyflashcardapp.R;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
@@ -140,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
                 Animator anim = ViewAnimationUtils.createCircularReveal(answerSideView,cx,cy,0f,finalRadius);
                 //hide the question and show the answer to prepare for playing the animation!
                 questionSideView.setVisibility(View.INVISIBLE);
+                editButton.setVisibility(View.INVISIBLE);
                 answerSideView.setVisibility(View.VISIBLE);
 
                 anim.setDuration(1000);
@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 questionTextView.setVisibility(View.VISIBLE);
+                editButton.setVisibility(View.VISIBLE);
                 answerTextView.setVisibility(View.INVISIBLE);
             }
         });
@@ -202,6 +203,15 @@ public class MainActivity extends AppCompatActivity {
                 allFlashcards = flashcardDatabase.getAllCards();
                 flashcardDatabase.deleteCard(((TextView) findViewById(R.id.flashcard_question)).getText().toString());
                 flashcardDatabase.deleteCard(((TextView) findViewById(R.id.flashcard_answer)).getText().toString());
+                    if(allFlashcards.isEmpty()==true) {
+                        Toast fooToast = Toast.makeText(MainActivity.this, "Triche is now empty",
+                                Toast.LENGTH_SHORT);
+                        fooToast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                        fooToast.show();
+                        return;
+                    }
+
+
 
                 /*if (allFlashcards.size() == 0)
                     return;
@@ -245,6 +255,8 @@ public class MainActivity extends AppCompatActivity {
                 flashcardDatabase.deleteCard(((TextView) findViewById(R.id.answer1)).getText().toString());
                 flashcardDatabase.deleteCard(((TextView) findViewById(R.id.answer2)).getText().toString());
                 flashcardDatabase.deleteCard(((TextView) findViewById(R.id.answer3)).getText().toString());*/
+                // animation to delete question and answer
+
             }
         });
 

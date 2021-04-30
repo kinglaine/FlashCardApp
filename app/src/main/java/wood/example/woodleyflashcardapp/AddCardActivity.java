@@ -1,4 +1,4 @@
-package com.example.woodleyflashcardapp;
+package wood.example.woodleyflashcardapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,10 +8,9 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
+import com.wood.woodleyflashcardapp.R;
 
 public class AddCardActivity extends AppCompatActivity {
     @Override

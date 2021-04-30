@@ -1,4 +1,4 @@
-package com.example.woodleyflashcardapp;
+package wood.example.woodleyflashcardapp;
 
 import android.content.Context;
 

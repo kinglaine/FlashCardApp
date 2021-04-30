@@ -1,4 +1,4 @@
-package com.example.woodleyflashcardapp;
+package wood.example.woodleyflashcardapp;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
