@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ECE7F4"
+    android:background="#FAFAFA"
     tools:context="wood.example.woodleyflashcardapp.MainActivity">
 
 
@@ -17,8 +17,8 @@
         android:layout_marginTop="70dp"
         android:layout_marginRight="20dp"
         android:hint="Enter your question Here"
-        android:textColorHighlight="#D1A82C"
-        android:textColorHint="#DCB7B7"/>
+        android:textColorHighlight="#00BCD4"
+        android:textColorHint="#9E9C9C"/>
     <EditText
         android:id="@+id/AnswersActivity2"
         android:layout_width="329dp"
@@ -27,49 +27,65 @@
         android:layout_marginTop="200dp"
         android:layout_marginRight="20dp"
         android:hint="Enter your answer Here"
-        android:textColorHighlight="#B492F3"
-        android:textColorHint="#DCB7B7"/>
-    <!--EditText
-        android:id="@+id/AnswersActivity3"
-        android:layout_below="@id/AnswersActivity2"
-        android:layout_width="329dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginRight="20dp"
-        android:hint="Enter wrong answer Here"
-        android:textColorHighlight="#345053"
-        android:textColorHint="#DCB7B7"/>
+        android:textColorHighlight="#00BCD4"
+        android:textColorHint="#9E9C9C"/>
 
-    <EditText
-        android:id="@+id/AnswersActivity4"
-        android:layout_below="@id/AnswersActivity3"
-        android:layout_width="329dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginRight="20dp"
-        android:hint="Enter another wrong answer Here"
-        android:textColorHighlight="#DC5382"
-        android:textColorHint="#DCB7B7"/>-->
     <ImageView
         android:id="@+id/cancel"
-        android:layout_width="400dp"
+        android:layout_width="64dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="250dp"
+        android:layout_alignEnd="@+id/AnswersActivity2"
+        android:layout_alignRight="@+id/AnswersActivity2"
+        android:layout_marginLeft="300dp"
         android:layout_marginTop="470dp"
-        android:src="@drawable/cancelbutton"
-        />
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:src="@drawable/ic_rectangle_3b" />
+
     <ImageView
         android:id="@+id/savequestionbutton"
-        android:layout_width="400dp"
+        android:layout_width="64dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="250dp"
+        android:layout_alignStart="@+id/AnswersActivity2"
+        android:layout_alignLeft="@+id/AnswersActivity2"
+        android:layout_marginStart="-10dp"
+        android:layout_marginLeft="-10dp"
         android:layout_marginTop="470dp"
-        android:src="@drawable/savequestion"
+        android:layout_marginRight="250dp"
+        android:src="@drawable/ic_rectangle_3b" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="40dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:layout_marginTop="480dp"
+        android:layout_marginLeft="35dp"
+        android:text="Save"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
         />
 
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/AnswersActivity2"
+        android:layout_alignRight="@+id/AnswersActivity2"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="480dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginRight="3dp"
+        android:elevation="40dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:text="Cancel"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
 
 
     />
